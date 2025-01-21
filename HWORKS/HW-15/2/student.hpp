@@ -1,10 +1,10 @@
 #include<string>
 class Student {
-    public:
+    private:
     std::string Surname_, Name_, Patronymic_, Group_;
     int Age_;
 
-
+    public:
     //конструктор по умолчанию
     Student() : Age_(0) {}   
 
