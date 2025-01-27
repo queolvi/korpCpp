@@ -1,0 +1,1 @@
+double foo(int x, double (*f)(double f_));
