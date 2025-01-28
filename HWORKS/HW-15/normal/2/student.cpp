@@ -13,25 +13,20 @@ class Student {
     public:
     //конструктор по умолчанию
     Student() = delete;
-
-   Student(const Student& rhs) : gen(rhs.gen), Age_(rhs.Age_) {
-    std::memcpy(Surname_, rhs.Surname_, 50);
-    std::memcpy(Name_, rhs.Name_, 50);
-    std::memcpy(Patronymic_, rhs.Patronymic_, 50);
-    std::memcpy(Group_, rhs.Group_, 50);
-   }
    
-    Student& operator=(const Student& rhs) {
-    if(this != &rhs) {
-        std::memcpy(Surname_, rhs.Surname_, 50);
-        std::memcpy(Name_, rhs.Name_, 50);
-        std::memcpy(Patronymic_, rhs.Patronymic_, 50);
-        std::memcpy(Group_, rhs.Group_, 50);
-        gen = rhs.gen;
-        Age_ = rhs.Age_;
-        }
-    return *this;
-    };
+    Student& operator=(const Student& rhs) = delete;
+
+    Student(const Student& rhs) = delete;
+    
+    Student(const char* name, Gender g) : gen(g) 
+    {
+        std::memcpy (&name, Surname_, 50);
+        std::memcpy (&name, Name_, 50);
+        std::memcpy (&name, Patronymic_, 50);
+        std::memcpy (&name, Group_, 50);
+        
+    }
+
 
     //конструктор копирования - копирование невозможно
     //Student(const Student& other) = delete;
