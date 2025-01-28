@@ -9,18 +9,7 @@ class Student {
     //конструктор по умолчанию
     Student() : Age_(0) {}   
 
-    //конструктор с параметрами
-    Student(char Surname_,  
-    char Name_,
-    char Patronymic_,
-    char Group_,
-    int Age_) : 
-    Surname_(Surname_),
-    Name_(Name_),
-    Patronymic_(Patronymic_), 
-    Group_(Group_), 
-    Age_(Age_) 
-    {}
+    
 
     //конструктор копирования - копирование невозможно
     Student(const Student& other) = delete;
