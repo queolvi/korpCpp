@@ -1,8 +1,9 @@
+#include "gender.h"
 #include "student.h"
 #include <iostream>
 #include <cstring>
 
-enum class Gender  {Male, Female};
+
 
 class Student {
     private:
@@ -11,29 +12,34 @@ class Student {
     Gender gen;
 
     public:
-    //конструктор по умолчанию
+    
     Student() = delete;
    
     Student& operator=(const Student& rhs) = delete;
 
     Student(const Student& rhs) = delete;
     
-    Student(const char* name, Gender g) : gen(g) 
-    {
-        std::memcpy (&name, Surname_, 50);
-        std::memcpy (&name, Name_, 50);
-        std::memcpy (&name, Patronymic_, 50);
-        std::memcpy (&name, Group_, 50);
-        
+    Student(const char* name, Gender g) : gen(g) { 
+       std::strncpy(Name_, name, 49);
+       Name_[49] = '\0'; 
     }
 
+    void SetSurname(const char* surname) {
+        std::strncpy(Surname_, surname, 49);
+        Surname_[49] = '\0';
+    }
 
-    //конструктор копирования - копирование невозможно
-    //Student(const Student& other) = delete;
+    void SetPatronymic(const char* patronymic) {
+        std::strncpy(Patronymic_, patronymic, 49);
+        Patronymic_[49] = '\0';
+    }
 
-    //оператор присваивания копированием - копирование невозможно
-   // Student& operator = (const Student& other) = delete; 
+    void SetSurname(const char* group) {
+        std::strncpy(Group_, group, 49);
+        Group_[49] = '\0';
+    }
 
-    
-    
+    void SetAge(int& age) {
+        age = Age_;
+    }
 };
