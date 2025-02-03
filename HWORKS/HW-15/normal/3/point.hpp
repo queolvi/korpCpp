@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 
-class Point {
+struct Point {
     double x, y;
 };
 
