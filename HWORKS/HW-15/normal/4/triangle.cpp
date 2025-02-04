@@ -22,6 +22,7 @@
 
     double Triangle::tr_semiperimeter(const Triangle& t) {
         double semipr = tr_perimeter(t) / 2;
+        return semipr;
     }
 
     double Triangle::herons_formula(const Triangle& t) {

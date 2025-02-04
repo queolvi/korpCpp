@@ -2,7 +2,7 @@
 #include "triangle.hpp"
 #include "mySqrt.hpp"
 #include "myAbs.hpp"
-double mySqrt(double a, double epsilon = 1e-10, int max_iterations = 100) {
+double mySqrt(double a, double epsilon, int max_iterations) {
     if (a < 0) {
         return 1;
     }

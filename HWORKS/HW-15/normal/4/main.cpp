@@ -12,6 +12,14 @@ int main() {
     std::cin >> a >> b >> c;
     
     Triangle MyT{a, b, c};
+
+    std::cout << "Lets check, is your triangle a triangle: " << MyT.is_triangle(MyT) << "\n";
+    double per = MyT.tr_perimeter(MyT);
+    std::cout << "Triangle perimeter = " << per << "\n";
+    double semiper = MyT.tr_semiperimeter(MyT);
+    std::cout << "Triangle semiperimeter = " << semiper << "\n";
+    double Square = MyT.herons_formula(MyT);
+    std::cout << "Triangle Square: " << Square << "\n";
     
 
 
