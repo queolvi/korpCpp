@@ -6,7 +6,8 @@ class Triangle {
 
     public: 
     Triangle() = delete;
-    
+    Triangle(double a_val, double b_val, double c_val) : a(a_val), b(b_val), c(c_val) {};
+
     bool is_triangle(const Triangle& t);
     double tr_perimeter(const Triangle& t);
     double tr_semiperimeter(const Triangle& t);

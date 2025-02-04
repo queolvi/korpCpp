@@ -3,34 +3,33 @@
 #include "mySqrt.hpp"
 #include "myAbs.hpp"
 
-    bool is_triangle(const Triangle& t) {
-        if (a + b > c && b + c > a && c + a > b) {
+    bool Triangle::is_triangle(const Triangle& t) {
+        if (t.a + t.b > t.c && t.b + t.c > t.a && t.c + t.a > t.b) {
             return true;
         } else {
             return false;
         }
     }
 
-    double tr_perimeter(const Triangle& t) {
-        if(a > 0 && b > 0 && c > 0) {
-            double per = a + b + c;
+    double Triangle::tr_perimeter(const Triangle& t) {
+        if(t.a > 0 && t.b > 0 && t.c > 0) {
+            double per = t.a + t.b + t.c;
             return per;
         } else {
             return 1.0;
         }
     }
 
-    double tr_semiperimeter(const Triangle& t) {
+    double Triangle::tr_semiperimeter(const Triangle& t) {
         double semipr = tr_perimeter(t) / 2;
     }
 
-    double herons_formula(const Triangle& t) {
-        double S = mySqrt( * (p - a) * (p - b) * (p - c));
-
-        if(is_triangle(true)) {
-            return S;
-        } else {
-            return 1.0;
-        }
-    return 1;
+    double Triangle::herons_formula(const Triangle& t) {
+    if (!is_triangle(t)) {
+        return 1.0; 
     }
+
+    double p = tr_semiperimeter(t);
+    double area = mySqrt(p * (p - t.a) * (p - t.b) * (p - t.c)); 
+    return area;
+}
