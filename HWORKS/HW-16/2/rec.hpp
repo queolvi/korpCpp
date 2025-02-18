@@ -13,9 +13,11 @@ namespace HW_16 {
     Rectangle(Rectangle& rec);
     Rectangle(const Rectangle& rec) = delete;
 
-    const Rectangle& operator+(Rectangle& rec);
+    Rectangle operator+(const Rectangle& rhs) const;
+    const Rectangle& HW_16::Rectangle::operator+=(const HW_16::Rectangle& rec);
 
-    bool isSquareTriangle(const Point& A, const Point& B, const Point& C) const;
+
+    bool HW_16::Rectangle::isSquareTriangle(const Point& A, const Point& B, const Point& C) const;
     bool isRectangle(const Rectangle& rec) const;
 
 
