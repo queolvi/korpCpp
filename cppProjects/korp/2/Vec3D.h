@@ -8,9 +8,9 @@ namespace Practice {
         public:
         
         Vec3D(double x = 0.0, double y = 0.0, double z = 0.0);
-        double get_z() const;
-        Vec3D vector_product(Vec3D& tmp);
-        double scalar_product(const Vec3D& other) const;
+        Vec3D vector_product(const Vec3D& tmp);
+        double length() const;
+        double scalar_product(const Vec3D& tmp) const;
     };
 };
 

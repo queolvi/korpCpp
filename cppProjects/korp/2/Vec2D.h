@@ -6,12 +6,9 @@ namespace Practice {
         double x, y;
         public:
         Vec2D(double x = 0.0, double y = 0.0);
-
-        double get_x() const;
-        double get_y() const;
-
         double scalar_product(Vec2D & tmp) const;
         virtual double length() const;
+
         virtual ~Vec2D() {};
     };
 };
