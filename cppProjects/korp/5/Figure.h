@@ -10,7 +10,7 @@ namespace Practice {
         Circle (double r = 0.0);
         double length(Circle &c) const;
         double S(Circle &c) const;
-        
+        virtual ~Circle() {};
     };
     class Ellipse : public Circle {
     private: 
@@ -21,6 +21,7 @@ namespace Practice {
     double S(Ellipse &e) const;
     };
     
-    bool is_intersection(Circle& c, Ellipse& e);
+    bool is_intersection(const Circle& c, const Ellipse& e);
 };
 #endif
+//
