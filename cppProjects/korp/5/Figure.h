@@ -8,7 +8,7 @@ namespace Practice {
         double r;
         public:
         Circle (double r = 0.0);
-        double length(Circle &c) const;
+        double length(Circle &c) const; 
         double S(Circle &c) const;
         virtual ~Circle() {};
     };

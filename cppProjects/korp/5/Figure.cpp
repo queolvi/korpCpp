@@ -24,6 +24,7 @@ double Practice::Ellipse::S(Practice::Ellipse &e) const {
 }
 
 bool Practice::is_intersection(const Practice::Circle &c, const Practice::Ellipse &e) {
+
     double dist = c.r + e.r_;
     if(dist < 0) {
         return dist;

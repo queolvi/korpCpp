@@ -1,4 +1,4 @@
-#include <Fraction.hpp>
+#include "Fraction.hpp"
 
 
 
@@ -16,15 +16,26 @@ int main () {
     << "2 - f1 sub f2 \n"
     << "3 - f1 mult f2 \n"
     << "4 - f1 div f2 \n ";
-
+    
     int choice = 0;
-    myFraction res();
-    switch(choice) {
-        case '1' :
-         
-        
-        
+    std::cin >> choice;
+    
+    if (choice == 1) {
+        myFraction res = F1 + F2;
+        std::cout << "Res: \n "<< res << " \n";
+    } else if (choice == 2) {
+        myFraction res = F1 - F2;
+        std::cout << "Res: \n "<< res << " \n";
+    } else if (choice == 3) {
+        myFraction res = F1 * F2;
+        std::cout << "Res: \n "<< res << " \n";
+    } else if (choice == 4) {
+        myFraction res = F1 / F2;
+        std::cout << "Res: \n "<< res << " \n";
+    } else {
+        std::cout << "Invalid input.. \n";
     }
+    
     
     
     return 0;
