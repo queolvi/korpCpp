@@ -65,15 +65,16 @@ size_t IPO8381::Matrix::nrows() const {
 }
 
 void IPO8381::Matrix::dump(std::ostream& os) const {
-    for (size_t i = 0; i < nrows(); ++i) {
-        for (size_t j = 0; j < ncols(); ++j) {
-            os << (*this)[i][j] << '\t';
-        }
+    for (size_t i = 0, cols = ncols(); i < cols; ++i) {
+        for (size_t j = 0, rows = nrows(); j < rows; ++j) {
+            os << arr_[i][j] << '\t';
+            }
         os << '\n';
     }
+    return;
 }
 
-std::ostream& IPO8381::operator<<(std::ostream& os, const Matrix& m) {
+std::ostream& IPO8381::operator<<(std::ostream& os, const IPO8381::Matrix& m){
     m.dump(os);
     return os;
 }
@@ -88,56 +89,62 @@ IPO8381::Matrix IPO8381::Matrix::operator-() const {
     return result;
 }
 
-IPO8381::Matrix& IPO8381::Matrix::operator+=(const Matrix& rhs) {
-    if (nrows() != rhs.nrows() || ncols() != rhs.ncols()) {
-        throw std::invalid_argument("Matrices must have equal dimensions");
-    }
-    for (size_t i = 0; i < nrows(); ++i) {
-        for (size_t j = 0; j < ncols(); ++j) {
-            (*this)[i][j] += rhs[i][j];
-        }
-    }
+IPO8381::Matrix& IPO8381::Matrix::operator+=(const IPO8381::Matrix& rhs) {
+    if (nrows() != rhs.nrows() || ncols() != rhs.ncols())
+        throw std::invalid_argument("Matrixes have to have equal cols and rows!");
+    for (size_t i = 0, cols = ncols(); i < cols; ++i)
+        for (size_t j = 0, rows = nrows(); j < rows; ++j) 
+            {arr_[j][i] += rhs[j][i]; }
     return *this;
 }
 
-IPO8381::Matrix& IPO8381::Matrix::operator-=(const Matrix& rhs) {
-    return *this += (-rhs);
+IPO8381::Matrix& IPO8381::Matrix::operator-=(const IPO8381::Matrix& rhs) {
+    *this += -rhs;
+    return *this;
 }
 
-IPO8381::Matrix IPO8381::Matrix::operator*(double scalar) const {
+IPO8381::Matrix IPO8381::operator+(const IPO8381::Matrix& lhs, const IPO8381::Matrix& rhs) {
+    IPO8381::Matrix res{lhs};
+    res += rhs;
+    return res;
+}
+IPO8381::Matrix IPO8381::operator-(const IPO8381::Matrix& lhs, const IPO8381::Matrix& rhs) {
+    return lhs + (-rhs);
+}
+
+
+IPO8381::Matrix IPO8381::Matrix::operator*(double rhs) const {
     Matrix result(*this);
-    for (size_t i = 0; i < nrows(); ++i) {
-        for (size_t j = 0; j < ncols(); ++j) {
-            result[i][j] *= scalar;
+    for (size_t i = 0, cols = ncols(); cols < i; ++i) {
+        for (size_t j = 0, rows = nrows(); rows < j; ++j) {
+            result[i][j] *= rhs;
         }
     }
     return result;
 }
 
-IPO8381::Matrix IPO8381::Matrix::product(const Matrix& rhs) const {
-    if (ncols() != rhs.nrows()) {
-        throw std::invalid_argument("Matrix dimensions mismatch for multiplication");
-    }
-    Matrix result(nrows(), rhs.ncols());
-    for (size_t i = 0; i < nrows(); ++i) {
-        for (size_t j = 0; j < rhs.ncols(); ++j) {
-            result[i][j] = 0;
-            for (size_t k = 0; k < ncols(); ++k) {
-                result[i][j] += (*this)[i][k] * rhs[k][j];
-            }
+IPO8381::Matrix IPO8381::Matrix::product(const IPO8381::Matrix& rhs) const {
+    if (ncols() != rhs.nrows())
+        throw std::invalid_argument("ncols lhs have to be equal nrows rhs!");
+    Matrix res(nrows(), rhs.ncols());
+    for (size_t i = 0, rows = nrows(); i < rows; ++i)
+        for (size_t j = 0, cols = rhs.ncols(); j < cols; ++j) {
+            res[i][j] = 0;
+            for (size_t k = 0, sz = ncols(); k < sz; ++k)
+                res[i][j] += arr_[i][k] * rhs[k][j];
         }
-    }
-    return result;
+    return res;
 }
 
 bool IPO8381::Matrix::is_matrix_square() const {
-    return nrows() == ncols();
+    if(ncols() == nrows()) return true;
+    else { return false; }
 }
 
 bool IPO8381::Matrix::is_matrix_diagonal() const {
     if (!is_matrix_square()) return false;
-    for (size_t i = 0; i < nrows(); ++i) {
-        for (size_t j = 0; j < ncols(); ++j) {
+    for (size_t i = 0, cols = ncols(); cols < i; ++i) {
+        for (size_t j = 0, rows = nrows(); rows < i; ++j) {
             if (i != j && (*this)[i][j] != 0.0) {
                 return false;
             }
@@ -149,7 +156,7 @@ bool IPO8381::Matrix::is_matrix_diagonal() const {
 bool IPO8381::Matrix::is_matrix_upper_triangular() const {
     if (!is_matrix_square()) return false;
     for (size_t i = 1; i < nrows(); ++i) {
-        for (size_t j = 0; j < i; ++j) {
+        for (size_t j = 0; j < i && j < ncols(); ++j) {            
             if ((*this)[i][j] != 0.0) {
                 return false;
             }
@@ -229,14 +236,5 @@ IPO8381::Matrix IPO8381::Matrix::inverse() const {
         }
     }
     return adj * (1.0 / det);
-}
+};
 
-IPO8381::Matrix IPO8381::operator+(const Matrix& lhs, const Matrix& rhs) {
-    Matrix result(lhs);
-    result += rhs;
-    return result;
-}
-
-IPO8381::Matrix IPO8381::operator-(const Matrix& lhs, const Matrix& rhs) {
-    return lhs + (-rhs);
-}
