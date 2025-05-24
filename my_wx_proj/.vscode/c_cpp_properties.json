@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/wxWidgets-3.2.8/include/**",
+                "C:/wxWidgets-3.2.8/lib/gcc_dll/mswu"
+            ],
+            "defines": [
+                "__WXMSW__",
+                "_UNICODE",
+                "UNICODE"
+            ],
+            "compilerPath": "C:/Users/korpa/OneDrive/Desktop/programming/mingw64/bin/g++.exe"
+        }
+    ],
+    "version": 4
+}

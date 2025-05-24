@@ -1,0 +1,3 @@
+C:\Users\korpa\OneDrive\Desktop\programming\mingw64\bin\cmake.exe -E rm -f CMakeFiles\ReactionGame.dir/objects.a
+C:\Users\korpa\OneDrive\Desktop\programming\mingw64\bin\ar.exe qc CMakeFiles\ReactionGame.dir/objects.a @CMakeFiles\ReactionGame.dir\objects1.rsp
+C:\Users\korpa\OneDrive\Desktop\programming\mingw64\bin\c++.exe -static -static-libgcc -static-libstdc++ -Wl,--whole-archive CMakeFiles\ReactionGame.dir/objects.a -Wl,--no-whole-archive -o ReactionGame.exe -Wl,--out-implib,libReactionGame.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ReactionGame.dir\linkLibs.rsp

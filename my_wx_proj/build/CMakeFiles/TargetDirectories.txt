@@ -1,0 +1,3 @@
+C:/Users/korpa/OneDrive/Desktop/my_wx_proj/build/CMakeFiles/ReactionGame.dir
+C:/Users/korpa/OneDrive/Desktop/my_wx_proj/build/CMakeFiles/edit_cache.dir
+C:/Users/korpa/OneDrive/Desktop/my_wx_proj/build/CMakeFiles/rebuild_cache.dir
